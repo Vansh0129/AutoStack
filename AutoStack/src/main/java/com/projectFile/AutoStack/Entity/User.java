@@ -1,7 +1,6 @@
 package com.projectFile.AutoStack.Entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -34,6 +33,7 @@ public class User {
     Instant createdAt;
     @UpdateTimestamp
     Instant updatedAt;
+
     Instant deletedAt;
 
 }

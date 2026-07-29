@@ -14,6 +14,9 @@ import java.time.Instant;
 @Table(name="ProjectMember")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProjectMember {            //join table used to connect 2 things
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
     @OneToMany
     Project project;
@@ -22,7 +25,7 @@ public class ProjectMember {            //join table used to connect 2 things
     @Enumerated(EnumType.STRING)
     ProjectRoles roles;
 
-    Long invitedBy;
+    Instant invitedBy;
 
     Instant invitedAt;
 }
