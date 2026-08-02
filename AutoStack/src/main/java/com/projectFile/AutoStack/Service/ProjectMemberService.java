@@ -2,6 +2,7 @@ package com.projectFile.AutoStack.Service;
 
 import com.projectFile.AutoStack.Dto.Member.InviteMemberRequest;
 import com.projectFile.AutoStack.Dto.Member.MemberResponse;
+import com.projectFile.AutoStack.Dto.Project.UpdateMemberRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface ProjectMemberService {
 
     MemberResponse InviteMember(Long projectId, Long userId, InviteMemberRequest request);
 
-    MemberResponse UpdateRole(Long projectId, Long memberId, InviteMemberRequest request, Long userId);
+    MemberResponse UpdateRole(Long projectId, Long memberId, UpdateMemberRequest request, Long userId);
 
     MemberResponse DeleteProjectMember(Long projectId, Long memberId, Long userId);
 }

@@ -5,8 +5,11 @@ package com.projectFile.AutoStack.Controller;
 
 import com.projectFile.AutoStack.Dto.Member.InviteMemberRequest;
 import com.projectFile.AutoStack.Dto.Member.MemberResponse;
+import com.projectFile.AutoStack.Dto.Project.UpdateMemberRequest;
 import com.projectFile.AutoStack.Service.ProjectMemberService;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +21,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/projects/{projectId}/members")
 @RequiredArgsConstructor
+@FieldDefaults(makeFinal = true,level = AccessLevel.PRIVATE)        //This add private final to fields
 public class ProjectMemberController {
 
-    private final ProjectMemberService projectMemberService;
+     ProjectMemberService projectMemberService;
 
     @GetMapping
     public ResponseEntity<List<MemberResponse>> GetAllMembers(@PathVariable Long projectId){
@@ -39,9 +43,9 @@ public class ProjectMemberController {
     }
 
     @PutMapping("/{memberId}")
-    public ResponseEntity<MemberResponse> UpdateRole(
+    public ResponseEntity<MemberResponse> UpdateMemberRole(
             @PathVariable Long projectId,
-            @RequestBody InviteMemberRequest request,
+            @RequestBody UpdateMemberRequest request,
             @PathVariable Long memberId
             ) {
         Long userId = 2l;
