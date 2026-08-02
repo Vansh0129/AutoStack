@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface PlanService {
 
-    SubscriptionResponse GetCurrentSubscription(Long userId);
 
     ActivePlanResponse GetAllActivePlan(Long userId) ;
 

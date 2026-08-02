@@ -17,8 +17,8 @@ public class ProjectFile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @ManyToOne
-    Project project;
+//    @ManyToOne
+//    Project project;
 
     String path;
     String minioObjectKey;

@@ -19,8 +19,8 @@ public class Preview {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @ManyToOne
-    Project project;
+//    @ManyToOne
+//    Project project;
     @NotNull
     String nameSpace;
     String podName;

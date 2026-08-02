@@ -20,17 +20,17 @@ public class ChatMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    @ManyToOne
-    Project project;
-    @ManyToOne
-    User userId;
+//    @ManyToOne
+//    Project project;
+//    @ManyToOne
+//    User userId;
     @NotNull
     MessageRoles roles;
     String content;
     String toolCalls;       //json array of the tool called
     String toolCallingId;
-    @NotNull
+//    @NotNull
     Integer tokenUsed;
-    @CreationTimestamp
+//    @CreationTimestamp
     Instant createdAt;
 }

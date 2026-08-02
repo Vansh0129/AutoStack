@@ -19,23 +19,22 @@ public class AuthController {
     private final UserService userService;
     private final AuthService authService;
 
+//    TODO:Auth Response need to create.
+
     @PostMapping("/login")
-    public ResponseEntity<String> LoginReq(@RequestBody Login login){
-        return null;
+    public ResponseEntity<AuthResponse> LoginReq(@RequestBody Login loginReq){
+        return ResponseEntity.ok(authService.login(loginReq));
     }
 
     @PostMapping("/signUp")
-    public ResponseEntity<AuthResponse> SignUpReq(@RequestBody SignUp login){
-        return ResponseEntity.ok(authService.signUp(login));
+    public ResponseEntity<AuthResponse> SignUpReq(@RequestBody SignUp signup){
+        return ResponseEntity.ok(authService.signUp(signup));
     }
 
     @GetMapping("/me")
     public ResponseEntity<UserProfileResponse> ProfileReq(){
         Long userId=1L;
         return ResponseEntity.ok(userService.getProfile(userId));
-
-
-
 
     }
 

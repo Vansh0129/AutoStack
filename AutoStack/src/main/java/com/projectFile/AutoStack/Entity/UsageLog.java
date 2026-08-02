@@ -17,10 +17,10 @@ public class UsageLog {     //help to manage usage and the quata
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @ManyToOne
-    User user;
-    @ManyToOne
-    Project project;
+//    @ManyToOne
+//    User user;
+//    @ManyToOne
+//    Project project;
     String action;
     Integer tokensUsed;
     Integer durationMs;

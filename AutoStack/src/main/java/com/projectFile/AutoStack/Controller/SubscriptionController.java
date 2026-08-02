@@ -26,7 +26,7 @@ public class SubscriptionController {
     @GetMapping("/api/me/subscription")
     public ResponseEntity<SubscriptionResponse>  GetMySubscription(){
         Long userId=1l;
-        return  ResponseEntity.ok( planService.GetCurrentSubscription(userId));
+        return  ResponseEntity.ok( subscriptionService.GetCurrentSubscription(userId));
 
     }
     @PostMapping("/api/stripe/checkout")

@@ -22,12 +22,11 @@ public class Subscription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @ManyToOne
-    User user;
-
-    @OneToMany
-    Plan plan;
-
+//    @ManyToOne
+//    User user;
+//
+//    @OneToMany
+//    Plan plan;
     String stripeSubscriptionId;
 
     SubscriptionStatus status;

@@ -1,6 +1,7 @@
 package com.projectFile.AutoStack.Controller;
 
 
+import com.projectFile.AutoStack.Dto.Project.ProjectRequest;
 import com.projectFile.AutoStack.Dto.Project.ProjectResponse;
 import com.projectFile.AutoStack.Dto.Project.ProjectSummeryResponse;
 import com.projectFile.AutoStack.Service.ProjectService;
@@ -27,21 +28,21 @@ public class ProjectController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ProjectResponse> getProjectsById(@PathVariable Long id){
-        long userId=1l;
+        Long userId=1l;
         ProjectResponse response=projectService.getProjectById(id,userId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     @PostMapping
-    public ResponseEntity<ProjectResponse> createProject(){
-        long userId=1l;
-        ProjectResponse response=projectService.createProject(userId);
+    public ResponseEntity<ProjectResponse> createProject(@RequestBody ProjectRequest projectRequest){
+        Long userId=1l;
+        ProjectResponse response=projectService.createProject(projectRequest,userId);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProjectResponse> updateProjects(@PathVariable Long id){
+    public ResponseEntity<ProjectResponse> updateProjects(@PathVariable Long id,@RequestBody ProjectRequest projectRequest ){
         Long userId=1L;
-        ProjectResponse response=projectService.updateProjects(id,userId);
+        ProjectResponse response=projectService.updateProjects(id,userId,projectRequest);
         return new ResponseEntity<>(response, HttpStatus.OK);
 
 

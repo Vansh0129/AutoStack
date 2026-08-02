@@ -18,10 +18,10 @@ public class ProjectMember {            //join table used to connect 2 things
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @OneToMany
-    Project project;
-    @OneToMany
-    User user;
+//    @OneToMany
+//    Project project;
+//    @OneToMany
+//    User user;
     @Enumerated(EnumType.STRING)
     ProjectRoles roles;
 

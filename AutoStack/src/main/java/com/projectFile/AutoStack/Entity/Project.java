@@ -3,34 +3,40 @@ package com.projectFile.AutoStack.Entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AccessLevel;
-import lombok.Data;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 
-@Entity
 @Data
+@Entity
 @Table(name="Project")
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Project {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    @NotNull
+
+    @Column(nullable = false)
     String name;
-    @ManyToMany
-    User user;
-    @Column(unique = true,nullable = false)
-    long ownerId;
+
+    @ManyToOne       //READ: Many (Project) to One User.
+    @JoinColumn(name = "owner_id",nullable = false)     //by default field also have same name only owner_Id
+    User owner;  //One owner can have many Projects.
+
     Boolean is_public=false;
+
     @CreationTimestamp
-    Instant cratedAt;
+    Instant createdOn;
+
     @UpdateTimestamp
-    Instant updatedAt;
-    Instant deletedAt;
+    Instant updatedOn;
+
+    Instant deletedOn;
 
 }

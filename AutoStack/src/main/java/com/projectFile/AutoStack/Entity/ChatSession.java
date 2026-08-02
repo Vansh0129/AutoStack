@@ -16,11 +16,14 @@ import java.time.Instant;
 @Table(name="ChatSession")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ChatSession {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long id;
 
-    @ManyToOne
-    Project project;
-    @ManyToOne
-    User user;
+//    @ManyToOne
+//    Project project;
+//    @ManyToOne
+//    User user;
     @NotNull
     String title;
     @CreationTimestamp
