@@ -11,7 +11,7 @@ import java.time.Instant;
 
 @Entity
 @Data
-@Table(name="users")
+@Table(name = "users")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,7 +20,7 @@ import java.time.Instant;
 public class User {  //#IMPORTANT:-> Postgres by default have User table so do not create any table with same User name.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     Long id;
+    Long id;
 
     @Column(nullable = false)
     String email;
@@ -30,7 +30,7 @@ public class User {  //#IMPORTANT:-> Postgres by default have User table so do n
 
     @Column(nullable = false)
     String name;
-//    @ManyToMany
+    //    @ManyToMany
 //    Project project;
     @Column(nullable = false)
     String avtarUrl;

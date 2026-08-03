@@ -20,7 +20,7 @@ public class ProjectController {
     private final ProjectService projectService;
 
     @GetMapping
-    public ResponseEntity<List<ProjectSummeryResponse>> getUserProjects() {
+    public ResponseEntity<List<ProjectSummeryResponse>> getAllUserProjects() {
         Long userId = 1L;
         List<ProjectSummeryResponse> response = projectService.getAllProjects(userId);
         return new ResponseEntity<>(response, HttpStatus.OK);

@@ -20,14 +20,14 @@ import java.time.Instant;
 public class Project {
 
     @Id     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    Long id;
 
     @Column(nullable = false)
     String name;
 
     @ManyToOne       //READ: Many (Project) to One User.
     @JoinColumn(name = "owner_id",nullable = false)     //by default field also have same name only owner_Id
-    User owner;  //One owner can have many Projects.
+    User owner;
 
     Boolean is_public=false;
 
