@@ -1,13 +1,12 @@
 package com.projectFile.AutoStack.Service.Impl;
 
 import com.projectFile.AutoStack.Dto.Member.InvitationRequest;
+import com.projectFile.AutoStack.Dto.Member.InvitationResponse;
 import com.projectFile.AutoStack.Dto.Member.InviteMemberRequest;
 import com.projectFile.AutoStack.Dto.Member.MemberResponse;
 import com.projectFile.AutoStack.Dto.Project.UpdateMemberRequest;
-
 import com.projectFile.AutoStack.Entity.Enum.InvitationOption;
 import com.projectFile.AutoStack.Entity.Project;
-import com.projectFile.AutoStack.Dto.Member.InvitationResponse;
 import com.projectFile.AutoStack.Entity.ProjectMember;
 import com.projectFile.AutoStack.Entity.ProjectMemberId;
 import com.projectFile.AutoStack.Entity.User;
@@ -45,8 +44,6 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
         Project project = projectRepo.findById(projectId).orElseThrow(() -> new NoSuchElementException("Invalid project Id !"));
         User invitee = userRepo.findByEmail(request.email()).orElseThrow(() -> new NoSuchElementException("Invalid Email,Cannot find the User !"));
 
-        if (!Objects.equals(project.getOwner().getId(), userId))
-            throw new RuntimeException("Un-Authorized to do Invite Member !");
         if (Objects.equals(invitee.getId(), userId)) throw new RuntimeException("You cannot invite your self!");
         if(projectMemberRepo.findByIdProjectIdAndMemberId(projectId, invitee.getId()).isPresent()) throw new RuntimeException("User is already member of Project !");
 
@@ -74,9 +71,6 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
                 .stream()
                 .map(projectMemberMapper::toMemberResponseFromMember)
                 .toList());
-        User owner = project.getOwner();
-
-        membersOfProject.add(projectMemberMapper.toMemberResponseFromOwner(owner));
 
         return membersOfProject;
 
@@ -87,8 +81,6 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
     public MemberResponse UpdateRole(Long projectId, Long memberId, UpdateMemberRequest request, Long userId) {
         Project project = projectRepo.findById(projectId).orElseThrow(() -> new NoSuchElementException("Invalid project Id !"));
 
-        if (!Objects.equals(project.getOwner().getId(), userId))
-            throw new RuntimeException("Un-Authorized to do Invite Member !");
         ProjectMember resource=projectMemberRepo.findByIdProjectIdAndMemberId(projectId,memberId).orElseThrow(() -> new NoSuchElementException("Member not found !"));;
         resource.setRole(request.role());
         resource=projectMemberRepo.save(resource);
@@ -98,8 +90,7 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
     @Override
     public void DeleteProjectMember(Long projectId, Long memberId, Long userId) {
         Project project = projectRepo.findById(projectId).orElseThrow(() -> new NoSuchElementException("Invalid project Id !"));
-        if (!Objects.equals(project.getOwner().getId(), userId))
-            throw new RuntimeException("Un-Authorized to do Invite Member !");
+
         ProjectMember member=projectMemberRepo.findByIdProjectIdAndMemberId(projectId,memberId).orElseThrow(() -> new NoSuchElementException("Member not found !"));;
         projectMemberRepo.delete(member);
     }

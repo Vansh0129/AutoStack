@@ -7,12 +7,13 @@ import com.projectFile.AutoStack.Dto.Auth.SignUp;
 import com.projectFile.AutoStack.Dto.Auth.UserProfileResponse;
 import com.projectFile.AutoStack.Service.AuthService;
 import com.projectFile.AutoStack.Service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value="/auth")
+@RequestMapping(value = "/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -22,22 +23,21 @@ public class AuthController {
 //    TODO:Auth Response need to create.
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> LoginReq(@RequestBody Login loginReq){
+    public ResponseEntity<AuthResponse> LoginReq(@RequestBody Login loginReq) {
         return ResponseEntity.ok(authService.login(loginReq));
     }
 
     @PostMapping("/signUp")
-    public ResponseEntity<AuthResponse> SignUpReq(@RequestBody SignUp signup){
+    public ResponseEntity<AuthResponse> SignUpReq(@Valid @RequestBody  SignUp signup) {
         return ResponseEntity.ok(authService.signUp(signup));
     }
 
     @GetMapping("/me")
-    public ResponseEntity<UserProfileResponse> ProfileReq(){
-        Long userId=1L;
+    public ResponseEntity<UserProfileResponse> ProfileReq() {
+        Long userId = 1L;
         return ResponseEntity.ok(userService.getProfile(userId));
 
     }
-
 
 
 }

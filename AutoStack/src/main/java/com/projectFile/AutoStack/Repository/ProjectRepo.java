@@ -15,7 +15,6 @@ public interface ProjectRepo extends JpaRepository<Project,Long> {
     @Query("""
             SELECT p FROM Project p
             WHERE p.deletedOn IS NULL
-            AND p.owner.id = :userId
             ORDER BY p.updatedOn DESC
             """
     )
@@ -23,9 +22,7 @@ public interface ProjectRepo extends JpaRepository<Project,Long> {
 
     @Query("""
             SELECT p FROM Project p
-            LEFT JOIN FETCH p.owner
             WHERE p.id = :projectId
-            AND p.owner.id = :userId
             AND p.deletedOn IS NULL
             ORDER BY p.updatedOn DESC
             """

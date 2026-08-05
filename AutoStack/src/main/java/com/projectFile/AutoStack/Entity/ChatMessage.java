@@ -2,13 +2,11 @@ package com.projectFile.AutoStack.Entity;
 
 
 import com.projectFile.AutoStack.Entity.Enum.MessageRoles;
-import com.projectFile.AutoStack.Entity.Enum.ProjectRoles;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 
