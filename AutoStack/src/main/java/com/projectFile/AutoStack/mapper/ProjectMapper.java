@@ -17,7 +17,11 @@ public interface ProjectMapper {
     ProjectResponse toProjectResponse(Project project);
     @Mapping(target = "id",source = "project.id")
     @Mapping(target = "name",source = "project.name")
+
+
     ProjectResponse toProjectResponse(Project project, UserProfileResponse owner);
+
+
 
     List<ProjectSummeryResponse> toListProjectSummeryResponse(List<Project> project);
 

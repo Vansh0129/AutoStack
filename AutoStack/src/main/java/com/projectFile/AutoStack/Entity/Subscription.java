@@ -11,7 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 
-@Entity
+//@Entity
 @Data
 @Table(name="Subscriptions")
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -22,11 +22,7 @@ public class Subscription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-//    @ManyToOne
-//    User user;
-//
-//    @OneToMany
-//    Plan plan;
+
     String stripeSubscriptionId;
 
     SubscriptionStatus status;

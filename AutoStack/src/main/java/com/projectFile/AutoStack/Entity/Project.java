@@ -10,6 +10,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.Instant;
 
 @Data
+@Getter
+@Setter
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
@@ -17,9 +19,9 @@ import java.time.Instant;
 @AllArgsConstructor
 @Table(name = "Project",
         indexes = {
-                @Index(name="idx_projects_updated_at_desc" ,columnList = "updated_on DESC,deleted_on"),
-                @Index(name="idx_projects_deleted_at_updated_at_desc" ,columnList = "deleted_on,updated_on DESC"),
-                @Index(name="idx_projects_deleted_at" ,columnList = "deleted_on"),
+                @Index(name="idx_projects_updated_at_desc" ,columnList = "updated_at DESC,deleted_at"),
+                @Index(name="idx_projects_deleted_at_updated_at_desc" ,columnList = "deleted_at,updated_at DESC"),
+                @Index(name="idx_projects_deleted_at" ,columnList = "deleted_at"),
         }
 )
 public class Project {
@@ -32,18 +34,14 @@ public class Project {
     @Column(nullable = false)
     String name;
 
-//    @ManyToOne       //READ: Many (Project) to One User.
-//    @JoinColumn(name = "owner_id", nullable = false)     //by default field also have same name only owner_Id
-//    User owner;
-
-    Boolean is_public = false;
+    Boolean isPublic = false;
 
     @CreationTimestamp
-    Instant createdOn;
+    Instant createdAt;
 
     @UpdateTimestamp
-    Instant updatedOn;
+    Instant updatedAt;
 
-    Instant deletedOn;
+    Instant deletedAt;
 
 }

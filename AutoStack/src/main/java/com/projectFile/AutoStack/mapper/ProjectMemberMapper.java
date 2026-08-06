@@ -20,7 +20,7 @@ public interface ProjectMemberMapper {
 
     @Mapping(source = "project.id",target = "projectId")
     @Mapping(source = "project.name",target = "projectName")
-    @Mapping(source = "project.createdOn",target = "createdOn")
-    @Mapping(source = "project.updatedOn",target = "updatedOn")
+    @Mapping(source = "project.createdAt",target = "createdAt")
+    @Mapping(source = "project.updatedAt",target = "updatedAt")
     InvitationResponse toInvitationResponseFromProjectMember(ProjectMember list);
 }

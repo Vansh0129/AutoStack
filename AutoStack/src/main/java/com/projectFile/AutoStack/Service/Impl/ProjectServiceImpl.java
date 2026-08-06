@@ -41,7 +41,9 @@ public class ProjectServiceImpl implements ProjectService {
         User user = userRepo.findById(userId).orElseThrow(() -> new NoSuchElementException(("Invalid user Id :" + userId)));
         Project project = Project.builder()
                 .name(request.name())
-                .is_public(false)
+                .isPublic(false)
+                .createdAt(Instant.now())
+                .updatedAt(Instant.now())
                 .build();
         project = projectRepo.save(project);
         ProjectMember projectMember = ProjectMember.builder()
@@ -83,7 +85,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public ProjectResponse deleteProjects(Long projectId, Long userId) {
         Project project = projectRepo.getAllAccessibleProjectById(userId, projectId).orElseThrow(() -> new NoSuchElementException("Un-Authorized : Project does not belong to user ! "));
-        project.setDeletedOn(Instant.now());        //soft deleted
+        project.setDeletedAt(Instant.now());        //soft deleted
 //           project= projectRepo.save(project);        transaction auto do this!
 
 //        projectRepo.deleteById(projectId); do not delete directly!

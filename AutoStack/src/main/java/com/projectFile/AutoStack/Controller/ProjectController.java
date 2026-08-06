@@ -34,7 +34,7 @@ public class ProjectController {
     }
     @PostMapping
     public ResponseEntity<ProjectResponse> createProject(@RequestBody ProjectRequest projectRequest){
-        Long userId=1l;
+        Long userId=1L;
         ProjectResponse response=projectService.createProject(projectRequest,userId);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }

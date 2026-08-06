@@ -6,7 +6,7 @@ public record ProjectSummeryResponse (
         Long id,
         String name,
         Instant createdAt,
-        Boolean is_public,
+        Boolean isPublic,
         Instant updatedAt
 ){
 

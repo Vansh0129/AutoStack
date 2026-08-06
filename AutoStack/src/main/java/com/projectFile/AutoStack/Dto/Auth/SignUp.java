@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.bind.DefaultValue;
 public record SignUp (
         String name,
        @Email String email,
-       @Min(4) @Max(70) String password,
-        @DefaultValue(value = "") String avtarUrl ) {
+       @Min(4) @Max(70) String password
+       ) {
 
 }

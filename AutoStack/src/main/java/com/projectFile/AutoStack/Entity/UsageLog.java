@@ -11,7 +11,7 @@ import java.time.Instant;
 
 @Entity
 @Data
-@Table(name="Project")
+@Table(name="userLog")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UsageLog {     //help to manage usage and the quata
     @Id

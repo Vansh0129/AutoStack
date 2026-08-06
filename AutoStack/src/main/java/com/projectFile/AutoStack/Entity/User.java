@@ -1,5 +1,6 @@
 package com.projectFile.AutoStack.Entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -21,17 +22,16 @@ public class User {  //#IMPORTANT:-> Postgres by default have User table so do n
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     String email;
 
     @Column(nullable = false)
-    String hashPassword;
+    String password;
 
     @Column(nullable = false)
     String name;
-    //    @ManyToMany
-//    Project project;
-    @Column(nullable = false)
+
+    @Nullable
     String avtarUrl;
     @CreationTimestamp
     Instant createdAt;

@@ -18,10 +18,7 @@ public class ChatMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-//    @ManyToOne
-//    Project project;
-//    @ManyToOne
-//    User userId;
+
     @NotNull
     MessageRoles roles;
     String content;
