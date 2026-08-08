@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.AccessDeniedException;
+
 @RestController
 @RequestMapping(value = "/auth")
 @RequiredArgsConstructor
@@ -23,12 +25,12 @@ public class AuthController {
 //    TODO:Auth Response need to create.
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> LoginReq(@RequestBody Login loginReq) {
+    public ResponseEntity<AuthResponse> LoginReq(@RequestBody Login loginReq) throws AccessDeniedException {
         return ResponseEntity.ok(authService.login(loginReq));
     }
 
     @PostMapping("/signUp")
-    public ResponseEntity<AuthResponse> SignUpReq(@Valid @RequestBody  SignUp signup) {
+    public ResponseEntity<AuthResponse> SignUpReq( @RequestBody  SignUp signup) {
         return ResponseEntity.ok(authService.signUp(signup));
     }
 
