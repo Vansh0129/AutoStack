@@ -6,6 +6,8 @@ import com.projectFile.AutoStack.Dto.Member.InvitationResponse;
 import com.projectFile.AutoStack.Dto.Member.InviteMemberRequest;
 import com.projectFile.AutoStack.Dto.Member.MemberResponse;
 import com.projectFile.AutoStack.Dto.Project.UpdateMemberRequest;
+import com.projectFile.AutoStack.Security.AuthUtil;
+import com.projectFile.AutoStack.Security.ContextUtil;
 import com.projectFile.AutoStack.Service.ProjectMemberService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -24,17 +26,20 @@ import java.util.List;
 public class ProjectMemberController {
 
     ProjectMemberService projectMemberService;
-//    Owner api
+    ContextUtil contextUtil;
+
+    //    Owner api
     @GetMapping
     public ResponseEntity<List<MemberResponse>> GetAllMembers(@PathVariable Long projectId) {
-        Long userId = 1L;
+        Long userId = contextUtil.getId();
+
         return ResponseEntity.ok(projectMemberService.GetAllMembers(projectId, userId));
 
     }
 
     @PostMapping
     public ResponseEntity<MemberResponse> InviteMember(@PathVariable Long projectId, @RequestBody InviteMemberRequest request) {
-        Long userId = 1L;
+        Long userId = contextUtil.getId();
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(projectMemberService.InviteMember(projectId, userId, request));
@@ -47,7 +52,7 @@ public class ProjectMemberController {
             @RequestBody UpdateMemberRequest request,
             @PathVariable Long memberId
     ) {
-        Long userId = 1L;
+        Long userId = contextUtil.getId();
         return ResponseEntity.ok(projectMemberService.UpdateRole(projectId, memberId, request, userId));
     }
 
@@ -56,7 +61,7 @@ public class ProjectMemberController {
             @PathVariable Long projectId,
             @PathVariable Long memberId
     ) {
-        Long userId = 1L;
+        Long userId = contextUtil.getId();
         projectMemberService.DeleteProjectMember(projectId, memberId, userId);
         return ResponseEntity.noContent().build();
     }
@@ -65,19 +70,17 @@ public class ProjectMemberController {
 
     @GetMapping("/request")
     public ResponseEntity<List<InvitationResponse>> GetAllPendingMembersRequest() {
-        Long userId = 2L;
-        return ResponseEntity.ok(projectMemberService.GetAllPendingMembersRequest( userId));
+        Long userId = contextUtil.getId();
+        return ResponseEntity.ok(projectMemberService.GetAllPendingMembersRequest(userId));
     }
 
     @PostMapping("/accept")
     public ResponseEntity<Void> AcceptInviteMember(@PathVariable Long projectId, @RequestBody InvitationRequest request) {
-        Long userId = 2L;
-        projectMemberService.AcceptInviteMember(projectId,userId,request);
+        Long userId = contextUtil.getId();
+        projectMemberService.AcceptInviteMember(projectId, userId, request);
         return ResponseEntity.noContent().build();
 
     }
-
-
 
 
 }

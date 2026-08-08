@@ -6,8 +6,12 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.Instant;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -17,7 +21,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 
-public class User {  //#IMPORTANT:-> Postgres by default have User table so do not create any table with same User name.
+public class User  implements UserDetails {  //#IMPORTANT:-> Postgres by default have User table so do not create any table with same User name.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
@@ -37,4 +41,14 @@ public class User {  //#IMPORTANT:-> Postgres by default have User table so do n
     Instant createdAt;
     @UpdateTimestamp
     Instant updatedAt;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
+    }
+
+    @Override
+    public String getUsername() {
+        return this.getEmail();
+    }
 }
